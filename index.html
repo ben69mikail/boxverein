@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boxteam Schalke e.V. – Olympisches Boxen in Gelsenkirchen</title>
+  <meta name="description" content="Boxteam Schalke e.V. – Wettkampforientiertes olympisches Boxen in Gelsenkirchen-Schalke seit 2012. Jetzt kostenlos Probetraining anfragen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ==============================
+       CSS CUSTOM PROPERTIES
+    ============================== */
+    :root {
+      --royal-blue:      #1a47cc;
+      --royal-blue-mid:  #1e3a8a;
+      --royal-blue-light:#2563eb;
+      --deep-navy:       #060d1f;
+      --navy:            #0a1628;
+      --navy-card:       #0d1f3c;
+      --navy-border:     #1a3060;
+      --white:           #ffffff;
+      --off-white:       #e8edf5;
+      --text-muted:      #8fa3c8;
+      --accent-blue:     #3b82f6;
+      --max-w:           1140px;
+      --nav-h:           72px;
+      --radius:          4px;
+      --radius-lg:       8px;
+    }
+
+    /* ==============================
+       RESET & BASE
+    ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--deep-navy);
+      color: var(--off-white);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ==============================
+       UTILITIES
+    ============================== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 96px 0; }
+    .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.0;
+      color: var(--white);
+      margin-top: 8px;
+      margin-bottom: 24px;
+    }
+    .section-title span { color: var(--royal-blue-light); }
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--royal-blue-light);
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--royal-blue-light);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--royal-blue); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ==============================
+       NAVBAR
+    ============================== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      background: rgba(6, 13, 31, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--navy-border);
+      transition: box-shadow 0.3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: var(--navy);
+      border-bottom: 1px solid var(--navy-border);
+      z-index: 999;
+      padding: 24px;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ==============================
+       HERO
+    ============================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--deep-navy) 0%, #0a1628 40%, #071340 100%);
+      padding-top: var(--nav-h);
+    }
+    .hero-watermark {
+      position: absolute;
+      right: -3%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(100px, 18vw, 260px);
+      text-transform: uppercase;
+      line-height: 0.85;
+      color: rgba(26, 71, 204, 0.07);
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .hero-accent-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--royal-blue-light), transparent);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 80px 0 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(37, 99, 235, 0.35);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 24px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+    }
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 20px;
+    }
+    .hero-title .line1 { font-size: clamp(60px, 10vw, 124px); color: var(--white); display: block; }
+    .hero-title .line2 { font-size: clamp(60px, 10vw, 124px); color: var(--royal-blue-light); display: block; }
+    .hero-subtitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      margin-bottom: 8px;
+    }
+    .hero-location {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+    .hero-location a { color: var(--accent-blue); }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 40px; }
+    .stat { display: flex; flex-direction: column; }
+    .stat-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+    .stat-divider { width: 1px; height: 40px; background: var(--navy-border); align-self: center; }
+
+    /* ==============================
+       ÜBER UNS
+    ============================== */
+    #ueber-uns { background: var(--navy); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 16px; font-size: 15px; }
+    .about-highlight {
+      border-left: 3px solid var(--royal-blue-light);
+      padding: 16px 20px;
+      background: rgba(37, 99, 235, 0.06);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 24px 0;
+      font-style: italic;
+      color: var(--off-white);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .about-image img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    .about-image { position: relative; }
+    .about-badge {
+      position: absolute;
+      bottom: -18px;
+      left: -18px;
+      background: var(--royal-blue-light);
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: var(--radius-lg);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+
+    /* ==============================
+       TRAINER
+    ============================== */
+    #trainer { background: var(--deep-navy); }
+    .trainer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .trainer-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .trainer-card:hover { border-color: var(--royal-blue-light); transform: translateY(-4px); }
+    .trainer-avatar {
+      width: 64px; height: 64px;
+      background: var(--royal-blue-mid);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px; font-weight: 800;
+      color: var(--white);
+    }
+    .trainer-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 800;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .trainer-role { font-size: 13px; color: var(--accent-blue); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ==============================
+       TRAINING
+    ============================== */
+    #training { background: var(--navy); }
+    .training-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .training-days { display: flex; flex-direction: column; gap: 12px; }
+    .training-day {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      transition: border-color 0.2s;
+    }
+    .training-day:hover { border-color: var(--royal-blue-light); }
+    .training-day.special {
+      border-color: rgba(37, 99, 235, 0.4);
+      background: rgba(37, 99, 235, 0.04);
+    }
+    .day-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; text-transform: uppercase; color: var(--white); }
+    .day-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-blue); background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 4px; padding: 3px 8px; margin-top: 4px; display: inline-block; }
+    .day-time { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 600; color: var(--off-white); text-align: right; }
+    .day-time small { display: block; font-size: 12px; color: var(--text-muted); font-family: 'Barlow', sans-serif; font-weight: 400; }
+    .location-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: 16px;
+    }
+    .location-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 10px; letter-spacing: 0.1em; }
+    .location-address { font-size: 15px; color: var(--off-white); margin-bottom: 6px; }
+    .location-hint { font-size: 13px; color: var(--text-muted); font-style: italic; }
+    .membership-card {
+      background: linear-gradient(135deg, var(--royal-blue-mid), #0d2160);
+      border: 1px solid var(--royal-blue-light);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      height: 100%;
+    }
+    .membership-price { font-family: 'Barlow Condensed', sans-serif; font-size: 56px; font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .membership-price span { font-size: 20px; color: var(--text-muted); }
+    .membership-period { font-size: 13px; color: var(--accent-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
+    .membership-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .membership-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--off-white); }
+    .membership-features li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%232563eb'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .membership-note { font-size: 12px; color: var(--text-muted); margin-top: 12px; }
+
+    /* ==============================
+       PROBETRAINING
+    ============================== */
+    #probetraining {
+      background: var(--deep-navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #probetraining::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(26,71,204,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .probe-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .probe-image img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--navy-border);
+    }
+    .probe-info-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 24px 0 32px; }
+    .probe-info-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--off-white); }
+    .probe-info-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .probe-info-text strong { color: var(--white); display: block; }
+    .probe-info-text small { color: var(--text-muted); font-size: 13px; }
+    .probe-content p { color: var(--text-muted); font-size: 15px; margin-bottom: 12px; }
+
+    /* ==============================
+       GALERIE
+    ============================== */
+    #galerie { background: var(--navy); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .gallery-item {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--navy-border);
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,13,31,0.5) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ==============================
+       ANMELDEFORMULAR
+    ============================== */
+    #anmeldung { background: var(--deep-navy); }
+    .form-header { max-width: 560px; margin-bottom: 48px; }
+    .form-note { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+    .membership-form {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 800px;
+    }
+    .form-section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-row.single { grid-template-columns: 1fr; }
+    .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .form-group label span { color: #ef4444; margin-left: 2px; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: rgba(10,22,40,0.8);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--royal-blue-light); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(143,163,200,0.4); }
+    .form-group select option { background: var(--navy); }
+    .form-divider { border: none; border-top: 1px solid var(--navy-border); margin: 28px 0; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 14px; }
+    .checkbox-item { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--royal-blue-light); cursor: pointer; }
+    .checkbox-item span { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .checkbox-item span strong { color: var(--off-white); }
+    .form-info-box {
+      background: rgba(37,99,235,0.06);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .form-info-box strong { color: var(--accent-blue); }
+    .form-info-box a { color: #60a5fa; }
+    .form-submit {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px; margin-top: 28px;
+    }
+    .form-submit-note { font-size: 12px; color: var(--text-muted); max-width: 360px; line-height: 1.5; }
+    .btn-submit {
+      background: var(--royal-blue-light);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 15px 36px;
+      border-radius: var(--radius);
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--royal-blue); }
+
+    /* ==============================
+       FAQ
+    ============================== */
+    #faq { background: var(--navy); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .faq-item {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      cursor: pointer; text-align: left;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--white);
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: rgba(37,99,235,0.05); }
+    .faq-icon {
+      flex-shrink: 0; width: 22px; height: 22px;
+      background: rgba(37,99,235,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--accent-blue);
+      transition: transform 0.3s;
+      line-height: 1;
+    }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; padding: 0 24px; }
+    .faq-answer.open { max-height: 220px; padding: 0 24px 20px; }
+    .faq-answer p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+    /* ==============================
+       SOCIAL
+    ============================== */
+    #social { background: var(--deep-navy); padding: 72px 0; }
+    .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .social-card {
+      display: flex; align-items: center; gap: 20px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--navy-border);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .social-card:hover { transform: translateY(-4px); }
+    .social-card.fb { background: rgba(24,119,242,0.08); }
+    .social-card.fb:hover { border-color: #1877f2; }
+    .social-card.ig { background: rgba(225,48,108,0.08); }
+    .social-card.ig:hover { border-color: #e1306c; }
+    .social-card.wa { background: rgba(37,211,102,0.08); }
+    .social-card.wa:hover { border-color: #25d366; }
+    .social-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .social-icon svg { width: 28px; height: 28px; }
+    .social-card.fb .social-icon { background: rgba(24,119,242,0.2); }
+    .social-card.ig .social-icon { background: rgba(225,48,108,0.2); }
+    .social-card.wa .social-icon { background: rgba(37,211,102,0.2); }
+    .social-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
+    .social-handle { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
+    .social-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--navy-border);
+      padding: 56px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 16px; }
+    .footer-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 280px; }
+    .footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links li a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links li a:hover { color: var(--white); }
+    .footer-address { font-size: 14px; color: var(--text-muted); line-height: 1.8; font-style: normal; }
+    .footer-address a { color: var(--accent-blue); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding-top: 24px;
+      border-top: 1px solid var(--navy-border);
+    }
+    .footer-bottom p { font-size: 13px; color: var(--text-muted); }
+    .footer-verband { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+    .footer-verband span { font-size: 12px; color: var(--text-muted); }
+    .footer-verband a { font-size: 12px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-verband a:hover { color: var(--accent-blue); }
+
+    /* ==============================
+       SCROLL TO TOP
+    ============================== */
+    #scrollTop {
+      position: fixed; bottom: 28px; right: 28px; z-index: 500;
+      width: 44px; height: 44px;
+      background: var(--royal-blue-light);
+      border: none; border-radius: 50%;
+      cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #scrollTop.visible { display: flex; }
+    #scrollTop:hover { background: var(--royal-blue); }
+    #scrollTop svg { width: 20px; height: 20px; }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-image { order: -1; }
+      .about-image img { height: 340px; }
+      .about-badge { bottom: -12px; left: 12px; }
+      .training-grid { grid-template-columns: 1fr; gap: 32px; }
+      .probe-grid { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .faq-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .social-grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      .section { padding: 64px 0; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-buttons { flex-direction: column; }
+      .hero-stats { gap: 24px; }
+      .stat-divider { display: none; }
+      .trainer-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row, .form-row.triple { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .membership-form { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================
+     NAVBAR
+========================= -->
+<nav id="navbar" role="navigation" aria-label="Hauptnavigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Boxteam Schalke Startseite">
+        <img src="../boxen_blau.png" alt="Boxteam Schalke e.V. Logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#probetraining">Probetraining</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#anmeldung" class="btn btn-primary">Jetzt Anmelden</a>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="navigation">
+  <a href="#ueber-uns"     onclick="closeMobileMenu()">Über uns</a>
+  <a href="#training"      onclick="closeMobileMenu()">Training</a>
+  <a href="#probetraining" onclick="closeMobileMenu()">Probetraining</a>
+  <a href="#galerie"       onclick="closeMobileMenu()">Galerie</a>
+  <a href="#anmeldung"     onclick="closeMobileMenu()">Anmeldung</a>
+  <a href="#faq"           onclick="closeMobileMenu()">FAQ</a>
+  <a href="https://www.facebook.com/boxteams" target="_blank" rel="noopener">Facebook</a>
+  <a href="https://www.instagram.com/boxteam_schalke_2012/" target="_blank" rel="noopener">Instagram</a>
+</div>
+
+<!-- ========================
+     HERO
+========================= -->
+<section id="hero" aria-label="Willkommen beim Boxteam Schalke e.V.">
+  <div class="hero-accent-line" aria-hidden="true"></div>
+  <div class="hero-watermark" aria-hidden="true">BOXEN<br>SCHALKE</div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">Gelsenkirchen-Schalke &middot; Seit 2012</div>
+      <h1 class="hero-title">
+        <span class="line1">Boxteam</span>
+        <span class="line2">Schalke</span>
+      </h1>
+      <p class="hero-subtitle">Olympisches Boxen &middot; Wettkampforientiert</p>
+      <p class="hero-location">
+        Gertrud-Bäumer-Realschule &middot;
+        <a href="https://maps.google.com/?q=Rotthauser+Str.+2-4+45889+Gelsenkirchen" target="_blank" rel="noopener">Gelsenkirchen</a>
+      </p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/491234567890?text=Ich%20m%C3%B6chte%20ein%20Probetraining%20anfragen"
+           target="_blank" rel="noopener"
+           class="btn btn-primary"
+           aria-label="Probetraining über WhatsApp anfragen">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.13.558 4.13 1.532 5.868L0 24l6.321-1.654A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.866 0-3.619-.497-5.13-1.365l-.368-.218-3.748.981 1-3.642-.24-.381A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          Probetraining anfragen
+        </a>
+        <a href="#anmeldung" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          Online Anmelden
+        </a>
+      </div>
+      <div class="hero-stats" role="list">
+        <div class="stat" role="listitem">
+          <span class="stat-number">2012</span>
+          <span class="stat-label">Gegründet</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-number">3+</span>
+          <span class="stat-label">Trainingstage/Woche</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-number">12–21</span>
+          <span class="stat-label">Jahre · Zielgruppe</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Lizenz-Trainer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     ÜBER UNS
+========================= -->
+<section id="ueber-uns" class="section" aria-labelledby="ueber-title">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="label">Der Verein</p>
+        <h2 class="section-title" id="ueber-title">Über <span>Boxteam Schalke</span></h2>
+        <div class="divider" aria-hidden="true"></div>
+        <p>BOXTEAM Schalke e.V. steht seit 2012 für leistungsorientiertes olympisches Boxen in Gelsenkirchen-Schalke. Bei uns geht es nicht um Fitnessboxen oder Trendsport, sondern um echten Vereinssport, Disziplin und sportliche Entwicklung.</p>
+        <p>Unser Training richtet sich hauptsächlich an Jugendliche und junge Erwachsene zwischen ca. 12 und 21 Jahren, die ernsthaft boxen lernen und sich wettkampfmäßig weiterentwickeln möchten.</p>
+        <blockquote class="about-highlight">
+          „Sparring gehört fest zu unserem Trainingskonzept und wird kontrolliert aufgebaut."
+        </blockquote>
+        <p>Trainiert wird strukturiert und wettkampforientiert – von den Grundlagen bis hin zur Vorbereitung auf Sparring und offizielle Wettkämpfe. Der Verein ist Mitglied im Deutschen Boxverband, NABSV und Gelsensport.</p>
+      </div>
+      <div class="about-image">
+        <img src="../Foto Galerie/Boxteam Schalke e.V (3).png"
+             alt="Das Boxteam Schalke – gemeinsam stark"
+             loading="lazy" />
+        <div class="about-badge" aria-hidden="true">Kein Fitnessboxen<br>Echter Vereinssport</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     TRAINER
+========================= -->
+<section id="trainer" class="section" aria-labelledby="trainer-title">
+  <div class="container">
+    <p class="label">Das Team</p>
+    <h2 class="section-title" id="trainer-title">Unser <span>Trainerteam</span></h2>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="trainer-grid">
+      <article class="trainer-card">
+        <div class="trainer-avatar" aria-hidden="true">FA</div>
+        <h3 class="trainer-name">Farid</h3>
+        <p class="trainer-role">B-Lizenz &middot; Vorstand &amp; Trainer</p>
+      </article>
+      <article class="trainer-card">
+        <div class="trainer-avatar" aria-hidden="true">GÜ</div>
+        <h3 class="trainer-name">Gürol</h3>
+        <p class="trainer-role">B-Lizenz &middot; Trainer</p>
+      </article>
+      <article class="trainer-card">
+        <div class="trainer-avatar" aria-hidden="true">TU</div>
+        <h3 class="trainer-name">Turgay</h3>
+        <p class="trainer-role">C-Lizenz &middot; Trainer</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     TRAINING & MITGLIEDSCHAFT
+========================= -->
+<section id="training" class="section" aria-labelledby="training-title">
+  <div class="container">
+    <p class="label">Training &amp; Mitgliedschaft</p>
+    <h2 class="section-title" id="training-title">Trainings-<span>zeiten</span></h2>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="training-grid">
+      <!-- Zeiten + Ort -->
+      <div>
+        <div class="training-days" role="list">
+          <div class="training-day" role="listitem">
+            <div>
+              <div class="day-name">Montag</div>
+              <span class="day-tag">Probetraining möglich</span>
+            </div>
+            <div class="day-time">19:00 – 20:30 Uhr<small>Treffen: 18:45 Uhr</small></div>
+          </div>
+          <div class="training-day special" role="listitem">
+            <div>
+              <div class="day-name">Mittwoch</div>
+              <span class="day-tag">Nur Wettkämpfer</span>
+            </div>
+            <div class="day-time">19:00 – 20:30 Uhr<small>Sparring &middot; Auf Einladung</small></div>
+          </div>
+          <div class="training-day" role="listitem">
+            <div>
+              <div class="day-name">Freitag</div>
+              <span class="day-tag">Probetraining möglich</span>
+            </div>
+            <div class="day-time">19:00 – 20:30 Uhr<small>Treffen: 18:45 Uhr</small></div>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-title">Trainingsort</div>
+          <p class="location-address">Gertrud-Bäumer-Realschule<br>Rotthauser Str. 2–4, 45889 Gelsenkirchen</p>
+          <p class="location-hint">Schulhof rechts → Treppen hoch → blaue Tür</p>
+        </div>
+      </div>
+      <!-- Mitgliedschaft -->
+      <div>
+        <div class="membership-card">
+          <p class="label" style="color:#93c5fd;margin-bottom:12px">Mitgliedschaft</p>
+          <div class="membership-price">16,50 <span>€</span></div>
+          <div class="membership-period">monatlich</div>
+          <ul class="membership-features" role="list">
+            <li>Alle regulären Trainingstage</li>
+            <li>Strukturiertes Wettkampftraining</li>
+            <li>Lizenzierte Trainer</li>
+            <li>Keine Vertragslaufzeit</li>
+            <li>Kündigung mit 1 Monat Frist</li>
+            <li>35 € einmalige Anmeldegebühr</li>
+          </ul>
+          <a href="#anmeldung" class="btn btn-primary" style="width:100%;justify-content:center">
+            Jetzt Mitglied werden
+          </a>
+          <p class="membership-note">Kündigung per E-Mail an info@boxteam-schalke.de</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     PROBETRAINING
+========================= -->
+<section id="probetraining" class="section" aria-labelledby="probe-title">
+  <div class="container">
+    <div class="probe-grid">
+      <div class="probe-image">
+        <img src="../Foto Galerie/Probetraining.png"
+             alt="Probetraining immer freitags – Boxteam Schalke e.V."
+             loading="lazy" />
+      </div>
+      <div class="probe-content">
+        <p class="label">Kostenlos &amp; unverbindlich</p>
+        <h2 class="section-title" id="probe-title">Probe-<span>training</span></h2>
+        <div class="divider" aria-hidden="true"></div>
+        <p>Du möchtest olympisches Boxen kennenlernen? Komm einfach zum kostenlosen Probetraining. Keine Voranmeldung nötig, keine Vorkenntnisse erforderlich.</p>
+        <ul class="probe-info-list" role="list">
+          <li>
+            <div class="probe-info-icon" aria-hidden="true">📅</div>
+            <div class="probe-info-text">
+              <strong>Termine</strong>
+              <small>Montags &amp; Freitags</small>
+            </div>
+          </li>
+          <li>
+            <div class="probe-info-icon" aria-hidden="true">🕖</div>
+            <div class="probe-info-text">
+              <strong>19:00 – 20:30 Uhr</strong>
+              <small>Treffen: 18:45 Uhr vor der Halle</small>
+            </div>
+          </li>
+          <li>
+            <div class="probe-info-icon" aria-hidden="true">📍</div>
+            <div class="probe-info-text">
+              <strong>Gertrud-Bäumer-Realschule</strong>
+              <small>Rotthauser Str. 2–4, 45889 Gelsenkirchen</small>
+            </div>
+          </li>
+          <li>
+            <div class="probe-info-icon" aria-hidden="true">🥊</div>
+            <div class="probe-info-text">
+              <strong>Ab 12 Jahren · Kein Vorwissen nötig</strong>
+              <small>Wettkampforientiertes Boxen – kein Fitness-Boxen</small>
+            </div>
+          </li>
+        </ul>
+        <a href="https://wa.me/491234567890?text=Ich%20m%C3%B6chte%20ein%20Probetraining%20anfragen"
+           target="_blank" rel="noopener"
+           class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.13.558 4.13 1.532 5.868L0 24l6.321-1.654A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.866 0-3.619-.497-5.13-1.365l-.368-.218-3.748.981 1-3.642-.24-.381A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          Probetraining anfragen
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     FOTOGALERIE
+========================= -->
+<section id="galerie" class="section" aria-labelledby="galerie-title">
+  <div class="container">
+    <p class="label">Impressionen</p>
+    <h2 class="section-title" id="galerie-title">Foto-<span>galerie</span></h2>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="gallery-grid" role="list">
+      <div class="gallery-item" role="listitem">
+        <img src="../Foto Galerie/Boxteam Schalke e.V (1).png"
+             alt="Boxer im Ring – Boxteam Schalke Training"
+             loading="lazy" />
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="../Foto Galerie/Boxteam Schalke e.V (2).png"
+             alt="Athletin mit Medaille – Technik-Pokal Düsseldorf 2026"
+             loading="lazy" />
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="../Foto Galerie/Boxteam Schalke e.V (3).png"
+             alt="Das Boxteam Schalke – gemeinsam nach dem Training"
+             loading="lazy" />
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="../Foto Galerie/Boxteam Schalke e.V (4).png"
+             alt="Gruppentraining in der Sporthalle"
+             loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     ANMELDEFORMULAR
+========================= -->
+<section id="anmeldung" class="section" aria-labelledby="anmeldung-title">
+  <div class="container">
+    <div class="form-header">
+      <p class="label">Online-Anmeldung</p>
+      <h2 class="section-title" id="anmeldung-title">Mitglieds-<span>antrag</span></h2>
+      <div class="divider" aria-hidden="true"></div>
+      <p class="form-note">Alle Felder mit * sind Pflichtfelder. Die Mitgliedschaft wird nach Prüfung durch den Vorstand bestätigt.</p>
+    </div>
+
+    <form
+      name="mitgliedsantrag"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="membership-form"
+      aria-label="Mitgliedsantrag Formular"
+      novalidate
+    >
+      <input type="hidden" name="form-name" value="mitgliedsantrag" />
+      <p style="display:none"><label>Nicht ausfüllen: <input name="bot-field" /></label></p>
+
+      <!-- Persönliche Daten -->
+      <div class="form-section-title">Persönliche Informationen – Mitglied</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="vorname">Vorname <span aria-hidden="true">*</span></label>
+          <input type="text" id="vorname" name="vorname" required autocomplete="given-name" placeholder="Max" />
+        </div>
+        <div class="form-group">
+          <label for="nachname">Nachname <span aria-hidden="true">*</span></label>
+          <input type="text" id="nachname" name="nachname" required autocomplete="family-name" placeholder="Mustermann" />
+        </div>
+      </div>
+      <div class="form-row triple">
+        <div class="form-group">
+          <label for="geburtsdatum">Geburtsdatum <span aria-hidden="true">*</span></label>
+          <input type="date" id="geburtsdatum" name="geburtsdatum" required autocomplete="bday" />
+        </div>
+        <div class="form-group">
+          <label for="telefon">Telefon / Handy <span aria-hidden="true">*</span></label>
+          <input type="tel" id="telefon" name="telefon" required autocomplete="tel" placeholder="+49 171 …" />
+        </div>
+        <div class="form-group">
+          <label for="email">E-Mail <span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="max@beispiel.de" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="adresse">Adresse (Straße + Hausnr.)</label>
+          <input type="text" id="adresse" name="adresse" autocomplete="street-address" placeholder="Musterstraße 1" />
+        </div>
+        <div class="form-group">
+          <label for="beginn">Mitgliedschaftsbeginn</label>
+          <input type="date" id="beginn" name="beginn_mitgliedschaft" />
+        </div>
+      </div>
+
+      <hr class="form-divider" />
+
+      <!-- Erziehungsberechtigte -->
+      <div class="form-section-title">Erziehungsberechtigte – nur bei Minderjährigen</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="erz_vorname">Vorname</label>
+          <input type="text" id="erz_vorname" name="erz_vorname" placeholder="Maria" />
+        </div>
+        <div class="form-group">
+          <label for="erz_nachname">Nachname</label>
+          <input type="text" id="erz_nachname" name="erz_nachname" placeholder="Mustermann" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="erz_telefon">Telefon / Handy</label>
+          <input type="tel" id="erz_telefon" name="erz_telefon" placeholder="+49 171 …" />
+        </div>
+        <div class="form-group">
+          <label for="erz_email">E-Mail</label>
+          <input type="email" id="erz_email" name="erz_email" placeholder="eltern@beispiel.de" />
+        </div>
+      </div>
+
+      <hr class="form-divider" />
+
+      <!-- Abteilung & SEPA -->
+      <div class="form-section-title">Abteilung &amp; Bankverbindung</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="abteilung">Abteilung <span aria-hidden="true">*</span></label>
+          <select id="abteilung" name="abteilung" required>
+            <option value="">Bitte wählen…</option>
+            <option value="Boxen">Boxen</option>
+            <option value="Kickboxen">Kickboxen</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="iban">IBAN (SEPA-Lastschrift)</label>
+          <input type="text" id="iban" name="iban" placeholder="DE …" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="form-info-box">
+        <strong>Mitgliedsbeitrag:</strong> 16,50 € monatlich &nbsp;&middot;&nbsp;
+        <strong>Anmeldegebühr:</strong> 35,00 € einmalig &nbsp;&middot;&nbsp;
+        Kündigung: 1 Monat Frist per E-Mail an <a href="mailto:info@boxteam-schalke.de">info@boxteam-schalke.de</a>
+      </div>
+
+      <hr class="form-divider" />
+
+      <!-- Bestätigungen -->
+      <div class="form-section-title">Pflichtbestätigungen</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item">
+          <input type="checkbox" name="bestaetigung_training" required />
+          <span>Ich bestätige, dass ich am <strong>leistungsorientierten, wettkampforientierten Training</strong> teilnehmen möchte und mir bewusst ist, dass Sparring fester Bestandteil ist. <span style="color:#ef4444">*</span></span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" name="bestaetigung_sporttauglichkeit" required />
+          <span>Ich bestätige meine <strong>Sporttauglichkeit</strong> und dass keine gesundheitlichen Einschränkungen die Teilnahme am Boxtraining untersagen. <span style="color:#ef4444">*</span></span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" name="einwilligung_social_media" />
+          <span>Ich willige ein, dass Fotos und Videos von Trainings und Wettkämpfen für <strong>Vereins- und Social-Media-Zwecke</strong> verwendet werden dürfen. (Optional)</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" name="datenschutz" required />
+          <span>Ich habe die Bedingungen (Haftungsausschluss, Kündigungskonditionen) gelesen und akzeptiert. <span style="color:#ef4444">*</span></span>
+        </label>
+      </div>
+
+      <div class="form-submit">
+        <p class="form-submit-note">Mit dem Absenden wird die Mitgliedschaft beantragt. Die Aufnahme wird durch den Vorstand bestätigt.</p>
+        <button type="submit" class="btn-submit">Antrag absenden</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ========================
+     FAQ
+========================= -->
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="container">
+    <p class="label">Häufige Fragen</p>
+    <h2 class="section-title" id="faq-title">FAQ</h2>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Ist das Probetraining kostenlos?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Ja, vollständig kostenlos und unverbindlich. Einfach montags oder freitags um 18:45 Uhr vorbeikommen – keine Anmeldung nötig.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Brauche ich Vorkenntnisse?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Nein. Absolute Anfänger sind willkommen. Wir beginnen mit den Grundlagen und steigern das Training schrittweise.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Ist das Fitnessboxen?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Nein. Wir trainieren olympisches Boxen – leistungs- und wettkampforientiert. Ziel ist die sportliche Entwicklung, nicht das Fitness-Workout.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Ab welchem Alter darf ich mitmachen?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Das Training richtet sich an Jugendliche und junge Erwachsene ab ca. 12 Jahren. Bei Minderjährigen ist die Zustimmung der Erziehungsberechtigten erforderlich.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Wie lange läuft die Mitgliedschaft?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Keine Mindestlaufzeit. Kündigung jederzeit mit einem Monat Frist per E-Mail an info@boxteam-schalke.de.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Was kostet die Mitgliedschaft?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>16,50 € monatlich plus eine einmalige Anmeldegebühr von 35 €.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Wann ist das Mittwochstraining?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Das Mittwochstraining ist reines Sparring und ausschließlich für aktive Wettkämpfer nach persönlicher Einladung durch die Trainer.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Wie finde ich den Trainingsort?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Gertrud-Bäumer-Realschule, Rotthauser Str. 2–4, 45889 Gelsenkirchen. Schulhof rechts → Treppe hoch → blaue Tür.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     SOCIAL MEDIA
+========================= -->
+<section id="social" aria-label="Soziale Medien">
+  <div class="container">
+    <p class="label" style="margin-bottom:24px;text-align:center">Folge uns</p>
+    <div class="social-grid">
+
+      <a href="https://www.facebook.com/boxteams"
+         target="_blank" rel="noopener noreferrer"
+         class="social-card fb"
+         aria-label="Boxteam Schalke auf Facebook">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" fill="#1877f2" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="social-label">Facebook</div>
+          <div class="social-handle">Boxteam Schalke</div>
+          <div class="social-sub">facebook.com/boxteams</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/boxteam_schalke_2012/"
+         target="_blank" rel="noopener noreferrer"
+         class="social-card ig"
+         aria-label="Boxteam Schalke auf Instagram">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="social-label">Instagram</div>
+          <div class="social-handle">@boxteam_schalke_2012</div>
+          <div class="social-sub">instagram.com/boxteam_schalke_2012</div>
+        </div>
+      </a>
+
+      <a href="https://wa.me/491234567890?text=Ich%20m%C3%B6chte%20Informationen%20%C3%BCber%20das%20Probetraining"
+         target="_blank" rel="noopener noreferrer"
+         class="social-card wa"
+         aria-label="Boxteam Schalke auf WhatsApp kontaktieren">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" fill="#25d366" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.13.558 4.13 1.532 5.868L0 24l6.321-1.654A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.866 0-3.619-.497-5.13-1.365l-.368-.218-3.748.981 1-3.642-.24-.381A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="social-label">WhatsApp</div>
+          <div class="social-handle">Direkt schreiben</div>
+          <div class="social-sub">Probetraining anfragen</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     FOOTER
+========================= -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="../boxen_blau.png" alt="Boxteam Schalke e.V. Logo" class="footer-logo" loading="lazy" />
+        <p class="footer-text">BOXTEAM Schalke e.V. – Wettkampforientiertes olympisches Boxen in Gelsenkirchen-Schalke seit 2012. Kein Fitnessboxen. Echter Vereinssport.</p>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Navigation</h3>
+        <ul class="footer-links">
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#training">Training &amp; Zeiten</a></li>
+          <li><a href="#probetraining">Probetraining</a></li>
+          <li><a href="#galerie">Fotogalerie</a></li>
+          <li><a href="#anmeldung">Mitglied werden</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Kontakt</h3>
+        <address class="footer-address">
+          BOXTEAM Schalke e.V.<br>
+          Bismarckstraße 299<br>
+          45889 Gelsenkirchen<br><br>
+          <a href="mailto:info@boxteam-schalke.de">info@boxteam-schalke.de</a>
+        </address>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Training</h3>
+        <address class="footer-address">
+          Gertrud-Bäumer-Realschule<br>
+          Rotthauser Str. 2–4<br>
+          45889 Gelsenkirchen<br><br>
+          Mo · Mi · Fr<br>
+          19:00 – 20:30 Uhr
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 BOXTEAM Schalke e.V. · Vorstand: Farid Allam</p>
+      <div class="footer-verband">
+        <span>Mitglied bei:</span>
+        <a href="https://www.boxverband.de/" target="_blank" rel="noopener">Deutscher Boxverband</a>
+        <a href="https://www.nabsv.de" target="_blank" rel="noopener">NABSV</a>
+        <a href="https://www.gelsensport.de" target="_blank" rel="noopener">Gelsensport</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button id="scrollTop" aria-label="Zurück nach oben">
+  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" aria-hidden="true">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<!-- ========================
+     JAVASCRIPT
+========================= -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Mobile menu toggle
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu   = document.getElementById('mobileMenu');
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item     = btn.closest('.faq-item');
+      const answer   = item.querySelector('.faq-answer');
+      const isActive = item.classList.contains('active');
+      // close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq-answer').classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      // open clicked if it was closed
+      if (!isActive) {
+        item.classList.add('active');
+        answer.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Scroll to top button
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
